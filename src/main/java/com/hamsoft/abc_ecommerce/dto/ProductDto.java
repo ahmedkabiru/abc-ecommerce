@@ -1,5 +1,6 @@
 package com.hamsoft.abc_ecommerce.dto;
 
+import com.hamsoft.abc_ecommerce.model.Product;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -14,4 +15,12 @@ public class ProductDto {
     private @NotNull String description;
     private @NotNull Long categoryId;
 
+    public ProductDto(Product product) {
+        this.setId(product.getId());
+        this.setName(product.getName());
+        this.setImageURL(product.getImageURL());
+        this.setDescription(product.getDescription());
+        this.setPrice(product.getPrice());
+        this.setCategoryId(product.getCategory().getId());
+    }
 }

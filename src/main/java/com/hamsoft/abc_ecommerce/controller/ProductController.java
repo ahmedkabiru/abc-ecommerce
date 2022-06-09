@@ -3,17 +3,16 @@ package com.hamsoft.abc_ecommerce.controller;
 import com.hamsoft.abc_ecommerce.commons.ApiResponse;
 import com.hamsoft.abc_ecommerce.dto.ProductDto;
 import com.hamsoft.abc_ecommerce.model.Category;
+import com.hamsoft.abc_ecommerce.model.Product;
 import com.hamsoft.abc_ecommerce.service.CategoryService;
 import com.hamsoft.abc_ecommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -33,4 +32,13 @@ public class ProductController {
         productService.addProduct(productDto,category);
         return new ResponseEntity<>(new ApiResponse(true, "category save successfully"), HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public  ResponseEntity<Object> getAllProducts(){
+        List<ProductDto> productList = productService.getAllProducts();
+        return  new ResponseEntity<>(productList, HttpStatus.OK);
+    }
+
+
+
 }
