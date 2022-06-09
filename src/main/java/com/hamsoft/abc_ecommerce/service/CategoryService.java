@@ -1,13 +1,13 @@
 package com.hamsoft.abc_ecommerce.service;
 
-import com.hamsoft.abc_ecommerce.repository.CategoryRepository;
-import org.springframework.stereotype.Service;
+import com.hamsoft.abc_ecommerce.model.Category;
 
-@Service
-public class CategoryService {
-    final CategoryRepository categoryRepository;
+public interface CategoryService {
 
-    public CategoryService(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+    Category getCategoryByName(String categoryName);
+
+    void creatCategory(Category category);
+
+
+
 }
