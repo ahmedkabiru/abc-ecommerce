@@ -31,6 +31,13 @@ public class ProductServiceImpl implements ProductService {
                 .map(ProductDto::new).collect(Collectors.toList());
     }
 
+    @Override
+    public void updateProduct(Long productID, ProductDto productDto, Category category) {
+        Product product = getProductFromDto(productDto,category);
+        product.setId(productID);
+        productRepository.save(product);
+    }
+
     public static Product getProductFromDto(ProductDto productDto, Category category) {
         Product product = new Product();
         product.setCategory(category);

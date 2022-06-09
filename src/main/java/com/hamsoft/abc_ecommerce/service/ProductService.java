@@ -11,4 +11,6 @@ public interface ProductService {
     void addProduct(ProductDto productDto, Category category);
 
     List<ProductDto> getAllProducts();
+
+    void  updateProduct(Long productID,ProductDto productDto, Category category);
 }
