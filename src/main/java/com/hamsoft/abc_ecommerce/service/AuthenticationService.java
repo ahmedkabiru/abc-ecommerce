@@ -1,5 +1,6 @@
 package com.hamsoft.abc_ecommerce.service;
 
+import com.hamsoft.abc_ecommerce.exceptions.CustomException;
 import com.hamsoft.abc_ecommerce.model.AuthenticationToken;
 import com.hamsoft.abc_ecommerce.model.User;
 
@@ -11,7 +12,9 @@ public interface AuthenticationService {
 
     Optional<AuthenticationToken> getToken(User user);
 
-    Optional<User> getUser(String  token);
+    User getUser(String  token);
+
+    void validateToken(String token) throws CustomException;
 
 
 

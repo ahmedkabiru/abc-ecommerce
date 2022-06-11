@@ -8,6 +8,7 @@ import com.hamsoft.abc_ecommerce.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,6 +39,11 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
     }
 
+    @Override
+    public Optional<Product> getProductByID(Long productId) {
+        return productRepository.findById(productId);
+    }
+
     public static Product getProductFromDto(ProductDto productDto, Category category) {
         Product product = new Product();
         product.setCategory(category);
@@ -47,6 +53,8 @@ public class ProductServiceImpl implements ProductService {
         product.setName(productDto.getName());
         return product;
     }
+
+
 
 
 }
