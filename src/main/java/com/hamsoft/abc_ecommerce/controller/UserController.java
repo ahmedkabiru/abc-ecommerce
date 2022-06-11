@@ -1,9 +1,13 @@
 package com.hamsoft.abc_ecommerce.controller;
 
+import com.hamsoft.abc_ecommerce.dto.SignInDto;
+import com.hamsoft.abc_ecommerce.dto.SignInResponseDto;
 import com.hamsoft.abc_ecommerce.dto.SignUpResponseDto;
 import com.hamsoft.abc_ecommerce.dto.SignupDto;
+import com.hamsoft.abc_ecommerce.exceptions.AuthenticationFailException;
 import com.hamsoft.abc_ecommerce.exceptions.CustomException;
 import com.hamsoft.abc_ecommerce.model.AuthenticationToken;
+import com.hamsoft.abc_ecommerce.model.User;
 import com.hamsoft.abc_ecommerce.service.AuthenticationService;
 import com.hamsoft.abc_ecommerce.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RequestMapping("/users")
 @RestController
@@ -33,6 +38,19 @@ public class UserController {
         userService.registerUser(signupDto);
         return new SignUpResponseDto("success", "user created successfully");
     }
+
+
+    @PostMapping("/login")
+    public SignInResponseDto login(@Valid @RequestBody SignInDto signInDto) throws AuthenticationFailException, CustomException {
+       Optional<User> user = userService.getUserByEmail(signInDto.getEmail());
+        if(user.isEmpty()){
+            throw new AuthenticationFailException("user not present");
+        }
+        String token = userService.authenticateUser(signInDto,user.get());
+        return new SignInResponseDto ("success", token);
+    }
+
+
 
 
 
