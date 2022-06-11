@@ -1,4 +1,4 @@
-package com.hamsoft.abc_ecommerce.config;
+package com.hamsoft.abc_ecommerce.commons;
 
 public class ApiResponse {
     public   final  boolean success;
