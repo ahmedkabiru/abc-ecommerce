@@ -1,11 +1,14 @@
 package com.hamsoft.abc_ecommerce.dto;
 
 import com.hamsoft.abc_ecommerce.model.Product;
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class ProductDto {
 
     private Long id;
