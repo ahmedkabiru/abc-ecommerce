@@ -1,6 +1,6 @@
 package com.hamsoft.abc_ecommerce.service.impl;
 
-import com.hamsoft.abc_ecommerce.dto.ProductDto;
+import com.hamsoft.abc_ecommerce.dto.product.ProductDto;
 import com.hamsoft.abc_ecommerce.model.Category;
 import com.hamsoft.abc_ecommerce.model.Product;
 import com.hamsoft.abc_ecommerce.repository.ProductRepository;
@@ -8,7 +8,7 @@ import com.hamsoft.abc_ecommerce.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDto> getAllProducts() {
         return productRepository.findAll().stream()
-                .map(ProductDto::new).collect(Collectors.toList());
+                .map(ProductDto::new).toList();
     }
 
     @Override
@@ -36,6 +36,11 @@ public class ProductServiceImpl implements ProductService {
         Product product = getProductFromDto(productDto,category);
         product.setId(productID);
         productRepository.save(product);
+    }
+
+    @Override
+    public Optional<Product> getProductByID(Long productId) {
+        return productRepository.findById(productId);
     }
 
     public static Product getProductFromDto(ProductDto productDto, Category category) {
@@ -47,6 +52,8 @@ public class ProductServiceImpl implements ProductService {
         product.setName(productDto.getName());
         return product;
     }
+
+
 
 
 }

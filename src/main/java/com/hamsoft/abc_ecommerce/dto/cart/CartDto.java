@@ -1,18 +1,20 @@
-package com.hamsoft.abc_ecommerce.dto;
-
+package com.hamsoft.abc_ecommerce.dto.cart;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class SignUpResponseDto {
+public class CartDto {
 
-    private String status;
-    private String message;
+    private List<CartItemDto> cartItems;
+
+    private double totalCost;
 
 }
