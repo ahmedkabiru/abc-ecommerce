@@ -1,4 +1,4 @@
-package com.hamsoft.abc_ecommerce.dto;
+package com.hamsoft.abc_ecommerce.dto.product;
 
 import com.hamsoft.abc_ecommerce.model.Product;
 import lombok.*;

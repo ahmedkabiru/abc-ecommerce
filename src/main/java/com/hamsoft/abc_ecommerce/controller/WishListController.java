@@ -1,7 +1,7 @@
 package com.hamsoft.abc_ecommerce.controller;
 
 import com.hamsoft.abc_ecommerce.commons.ApiResponse;
-import com.hamsoft.abc_ecommerce.dto.ProductDto;
+import com.hamsoft.abc_ecommerce.dto.product.ProductDto;
 import com.hamsoft.abc_ecommerce.exceptions.CustomException;
 import com.hamsoft.abc_ecommerce.model.Product;
 import com.hamsoft.abc_ecommerce.model.User;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/wishlist")
@@ -48,7 +47,7 @@ public class WishListController {
         authenticationService.validateToken(token);
         User user = authenticationService.getUser(token);
         List<ProductDto> products = wishListService.getAllWishList(user)
-                .stream().map(wishList -> new ProductDto(wishList.getProduct())).collect(Collectors.toList());
+                .stream().map(wishList -> new ProductDto(wishList.getProduct())).toList();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 

@@ -1,4 +1,4 @@
-package com.hamsoft.abc_ecommerce.dto;
+package com.hamsoft.abc_ecommerce.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
