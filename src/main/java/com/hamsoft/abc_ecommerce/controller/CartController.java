@@ -29,7 +29,7 @@ public class CartController {
     final AuthenticationService authenticationService;
 
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<CartDto> getCartItems(@RequestHeader("token") String token) throws CustomException {
         // first authenticate the token
         authenticationService.validateToken(token);
@@ -41,7 +41,7 @@ public class CartController {
         return new ResponseEntity<>(cartDto, HttpStatus.OK);
     }
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public ResponseEntity<ApiResponse> addToCart(@Valid @RequestBody AddToCartDto addToCartDto, @RequestHeader("token") String token) throws CustomException {
         authenticationService.validateToken(token);
         User user = authenticationService.getUser(token);
@@ -53,7 +53,7 @@ public class CartController {
         return new ResponseEntity<>(new ApiResponse(true, "Added to cart"), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{cartItemId}")
+    @DeleteMapping("/{cartItemId}")
     public ResponseEntity<ApiResponse> deleteCartItem(@PathVariable("cartItemId") Long cartItemId,
                                                       @RequestHeader("token") String token) throws CustomException {
         authenticationService.validateToken(token);
