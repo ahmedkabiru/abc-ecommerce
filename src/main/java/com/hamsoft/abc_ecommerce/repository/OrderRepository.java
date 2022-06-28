@@ -12,4 +12,6 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order,Long> {
 
     List<Order> findAllByUserOrderByCreatedDateDesc(User user);
+
+    Order findByUserAndId(User user, Long id);
 }

@@ -1,5 +1,6 @@
 package com.hamsoft.abc_ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class OrderItem {
     private Date createdDate;
 
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "order_id",referencedColumnName = "id")
     private Order order;

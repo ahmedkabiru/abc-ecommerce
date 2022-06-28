@@ -3,6 +3,7 @@ package com.hamsoft.abc_ecommerce.service.impl;
 import com.hamsoft.abc_ecommerce.dto.cart.CartDto;
 import com.hamsoft.abc_ecommerce.dto.cart.CartItemDto;
 import com.hamsoft.abc_ecommerce.dto.checkout.CheckoutItemDto;
+import com.hamsoft.abc_ecommerce.exceptions.OrderNotFoundException;
 import com.hamsoft.abc_ecommerce.model.Order;
 import com.hamsoft.abc_ecommerce.model.OrderItem;
 import com.hamsoft.abc_ecommerce.model.User;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -64,6 +66,25 @@ public class OrderServiceImpl  implements OrderService {
             orderItemRepository.save(orderItem);
         }
         cartService.deleteUserCartItems(user);
+    }
+
+
+    @Override
+    public List<Order> getAllOrders(User user) {
+        return orderRepository.findAllByUserOrderByCreatedDateDesc(user);
+    }
+
+    @Override
+    public Order getOrder(User user, Long id) throws OrderNotFoundException {
+        Optional<Order> optionalOrder = orderRepository.findById(id);
+        if(optionalOrder.isEmpty()){
+            throw  new OrderNotFoundException("order id is not valid");
+        }
+        Order order = optionalOrder.get();
+        if(order.getUser() != user) {
+            throw  new OrderNotFoundException("order does not belong to user");
+        }
+        return  order;
     }
 
     @Override
