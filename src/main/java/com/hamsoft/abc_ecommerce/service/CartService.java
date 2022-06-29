@@ -13,4 +13,6 @@ public interface CartService {
     CartDto listCartItems(User user);
 
     void deleteCartItem(Long cartItemId, User user) throws CustomException;
+
+    void  deleteUserCartItems(User user);
 }
