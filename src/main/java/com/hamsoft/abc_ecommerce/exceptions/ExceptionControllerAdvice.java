@@ -14,4 +14,9 @@ public class ExceptionControllerAdvice {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = OrderNotFoundException.class)
+    public final ResponseEntity<String> handleOrderNotFoundException(CustomException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
 }
