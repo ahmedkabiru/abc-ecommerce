@@ -29,7 +29,7 @@ public class Order {
     private Date createdDate;
 
     @OneToMany(mappedBy = "order",fetch = FetchType.LAZY)
-    private List<OrderItem> orderItem;
+    private List<OrderItem> orderItems;
 
     @ManyToOne()
     @JsonIgnore
