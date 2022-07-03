@@ -6,8 +6,6 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -24,6 +22,10 @@ jobs:
           java-version: 17
       # Build the Jar
       - name: Build with Maven
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         run: mvn -B package --file pom.xml
       # Login in Heroku
       - name: Heroku Container Registry login
