@@ -108,7 +108,7 @@
 					<includes>
 						<include>${project.build.directory}/${project.build.finalName}.jar</include>
 					</includes>
-					<jdkVersion>1.8</jdkVersion>
+					<jdkVersion>17</jdkVersion>
 					<processTypes>
 						<web>java $JAVA_OPTS -jar target/${project.build.finalName}.jar -Dserver.port=$PORT</web>
 					</processTypes>
