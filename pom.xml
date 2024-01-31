@@ -63,7 +63,7 @@
 		<dependency>
 			<groupId>com.stripe</groupId>
 			<artifactId>stripe-java</artifactId>
-			<version>20.127.0</version>
+			<version>20.136.0</version>
 		</dependency>
 
 		<dependency>
