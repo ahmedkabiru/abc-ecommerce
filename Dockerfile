@@ -1,4 +1,4 @@
-FROM openjdk:17-oracle
+FROM openjdk:17.0.2-oracle
 
 # Add Maintainer Info
 LABEL maintainer="opeyemi.kabiru@yahoo.com"
